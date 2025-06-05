@@ -29,11 +29,17 @@ Copy
 Edit
 simple-task-manager-api/
 ├── index.js
+
 ├── routes/
+
 │   └── tasks.js
+
 ├── utils/
+
 │   └── validateTask.js
+
 ├── package.json
+
 └── README.md
 
 
