@@ -8,7 +8,7 @@ app.use(express.json());
 let tasks = [];
 let idCounter = 1;
 
-// 🏠 Home - Show API status
+
 app.get("/", (req, res) => {
   res.send(`
     <!DOCTYPE html>
@@ -17,17 +17,17 @@ app.get("/", (req, res) => {
         <title>API is running</title>
         <style>
           body { display: flex; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif; background: #f0f0f0; }
-          h1 { color: green; font-size: 3rem; }
+          h1 { color: red; font-size: 3rem; }
         </style>
       </head>
       <body>
-        <h1>🚀 API is running</h1>
+        <h1>API is running</h1>
       </body>
     </html>
   `);
 });
 
-// ✅ GET all tasks + optional filtering
+
 app.get("/tasks", (req, res) => {
   const { status } = req.query;
 
@@ -40,7 +40,7 @@ app.get("/tasks", (req, res) => {
   res.json(tasks); // return all
 });
 
-// ✅ POST new task with validation
+
 app.post("/tasks", (req, res) => {
   const { title } = req.body;
   if (!title || typeof title !== "string" || title.trim() === "") {
@@ -52,7 +52,7 @@ app.post("/tasks", (req, res) => {
   res.status(201).json(newTask);
 });
 
-// ✅ DELETE task
+
 app.delete("/tasks/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const initialLength = tasks.length;
@@ -65,7 +65,7 @@ app.delete("/tasks/:id", (req, res) => {
   res.json({ message: "Task deleted successfully." });
 });
 
-// ✅ PUT - Mark task as completed
+
 app.put("/tasks/:id/complete", (req, res) => {
   const id = parseInt(req.params.id);
   const task = tasks.find(t => t.id === id);
@@ -78,7 +78,7 @@ app.put("/tasks/:id/complete", (req, res) => {
   res.json(task);
 });
 
-// ✅ Start server
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
